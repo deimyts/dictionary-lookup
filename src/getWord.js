@@ -8,6 +8,16 @@ const getNextChar = (sourceText, index, result) => {
   }
 }
 
+const getPrevChar = (sourceText, index, result) => {
+  const prevChar = index - 1;
+  if(prevChar >= 0) {
+    result = sourceText[prevChar] + result;
+    return getPrevChar(sourceText, prevChar, result);
+  } else {
+    return result
+  }
+}
+
 export default function getWord(sourceText, index) {
   const invalidArgs = !sourceText || typeof index !== 'number';
   if(invalidArgs) return '';
@@ -17,7 +27,6 @@ export default function getWord(sourceText, index) {
   let result = sourceText[index];
 
   result = getNextChar(sourceText, index, result);
-  const prevChar = index - 1;
-  if(prevChar >= 0) result = sourceText[prevChar] + result
+  result = getPrevChar(sourceText, index, result);
   return result
 }
