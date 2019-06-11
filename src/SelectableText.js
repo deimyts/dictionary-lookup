@@ -1,20 +1,19 @@
 import React from 'react';
 
-function Highlight(props) {
-  return <span style={{background: '#f00'}}>{props.children}</span>
+function Highlight({ children }) {
+  return <span style={{background: '#f00'}}>{children}</span>
 }
 
- 
-export default function SelectableText(props) {
-  if(props.selectionStart >= 0 && props.selectionEnd) {
+export default function SelectableText({selectionStart, selectionEnd, children}) {
+  if(selectionStart >= 0 && selectionEnd) {
     return (
       <span>
-        {props.children.substring(0, props.selectionStart)}
+        {children.substring(0, selectionStart)}
         <Highlight>
-          {props.children.substring(props.selectionStart, props.selectionEnd)}
+          {children.substring(selectionStart, selectionEnd)}
         </Highlight>
-        {props.children.substring(props.selectionEnd, props.children.length)}
+        {children.substring(selectionEnd, children.length)}
       </span>)
   }
-  return <span>{props.children}</span>;
+  return <span>{children}</span>;
 }
