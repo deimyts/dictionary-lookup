@@ -9,6 +9,7 @@ export default function SelectableText(props) {
   if(props.selectionStart >= 0 && props.selectionEnd) {
     return (
       <span>
+        {props.children.substring(0, props.selectionStart)}
         <Highlight>
           {props.children.substring(props.selectionStart, props.selectionEnd)}
         </Highlight>
