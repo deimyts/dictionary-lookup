@@ -10,6 +10,7 @@ const getNextChar = (sourceText, nextChar, result) => {
 
 const getPrevChar = (sourceText, prevChar, result) => {
   if(prevChar >= 0) {
+    if(sourceText[prevChar] === ' ') return result;
     result = sourceText[prevChar] + result;
     return getPrevChar(sourceText, prevChar - 1, result);
   } else {

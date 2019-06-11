@@ -31,6 +31,7 @@ describe('getWord()', () => {
       expect(getWord('abc def', 0)).toBe('abc')
       expect(getWord('ab', 1)).toBe('ab')
       expect(getWord('abc', 2)).toBe('abc')
+      expect(getWord('def abc', 6)).toBe('abc')
       expect(getWord('a', 0)).toBe('a')
   })
 
