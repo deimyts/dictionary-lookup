@@ -3,10 +3,9 @@ const isSpace = (char) => char === ' ';
 const getNextChars = (sourceText, index, result = '') => {
   const char = sourceText[index]
   const indexOutOfRange = index >= sourceText.length || index < 0
-  if(indexOutOfRange) {
+  if(indexOutOfRange || isSpace(char)) {
     return result
   } else {
-    if(isSpace(char)) return result;
     result += sourceText[index]
     return getNextChars(sourceText, index + 1, result);
   }
@@ -15,10 +14,9 @@ const getNextChars = (sourceText, index, result = '') => {
 const getPrevChars = (sourceText, index, result = '') => {
   const char = sourceText[index]
   const indexOutOfRange = index >= sourceText.length || index < 0
-  if(indexOutOfRange) { 
+  if(indexOutOfRange || isSpace(char)) { 
     return result 
   } else {
-    if(isSpace(char)) return result;
     result = sourceText[index] + result;
     return getPrevChars(sourceText, index - 1, result);
   }
