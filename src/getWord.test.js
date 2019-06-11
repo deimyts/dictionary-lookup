@@ -10,9 +10,32 @@ describe('getWord()', () => {
     })
   })
 
-  describe('when the source text is only one character long', () => {
-    it('should return that character', () => {
+  describe('when the source text does not contain spaces', () => {
+    it('should return the full source text', () => {
       expect(getWord('a', 0)).toBe('a')
+      expect(getWord('aa', 0)).toBe('aa')
+    })
+  })
+
+  describe('getting the word based on index', () => {
+      expect(getWord('ab', 0)).toBe('ab')
+      expect(getWord('a', 0)).toBe('a')
+  })
+
+  describe.skip('when the source text contains spaces', () => {
+    it('should not include the spaces', () => {
+      expect(getWord('a ', 0)).toBe('a')
+      expect(getWord(' a', 0)).toBe('a')
+      expect(getWord(' a ', 0)).toBe('a')
+      expect(getWord('a b', 0)).toBe('a')
+    })
+  })
+
+  describe('when the source text contains non-word characters', () => {
+    it('should return the full source text', () => {
+      // expect(getWord('a,', 0)).toBe('a')
+      // expect(getWord('a1', 0)).toBe('a')
+      // expect(getWord('a:', 0)).toBe('a')
     })
   })
 })
