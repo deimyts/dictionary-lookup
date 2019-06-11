@@ -28,7 +28,7 @@ export default function getWord(sourceText, index) {
 
   let result = sourceText[index];
 
-  result = getNextChar(sourceText, index + 1, result);
-  result = getPrevChar(sourceText, index - 1, result);
+  result = result + getNextChar(sourceText, index + 1, '');
+  result = getPrevChar(sourceText, index - 1, '') + result;
   return result
 }
