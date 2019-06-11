@@ -1,20 +1,20 @@
 const isSpace = (char) => char === ' ';
 
-const getNextChar = (sourceText, index, result) => {
+const getNextChars = (sourceText, index, result) => {
   if(index < sourceText.length) {
     if(isSpace(sourceText[index])) return result;
     result += sourceText[index]
-    return getNextChar(sourceText, index + 1, result);
+    return getNextChars(sourceText, index + 1, result);
   } else {
     return result
   }
 }
 
-const getPrevChar = (sourceText, index, result) => {
+const getPrevChars = (sourceText, index, result) => {
   if(index >= 0) {
     if(isSpace(sourceText[index])) return result;
     result = sourceText[index] + result;
-    return getPrevChar(sourceText, index - 1, result);
+    return getPrevChars(sourceText, index - 1, result);
   } else {
     return result
   }
@@ -28,7 +28,7 @@ export default function getWord(sourceText, index) {
 
   let result = sourceText[index];
 
-  result = result + getNextChar(sourceText, index + 1, '');
-  result = getPrevChar(sourceText, index - 1, '') + result;
+  result = result + getNextChars(sourceText, index + 1, '');
+  result = getPrevChars(sourceText, index - 1, '') + result;
   return result
 }
