@@ -25,8 +25,8 @@ const getPrevChars = (sourceText, index, result = '') => {
 }
 
 const getStartIndex = (sourceText, index) => {
-  if(index <= 0) return 0;
   if(isSpace(sourceText[index])) return index + 1;
+  if(index <= 0) return 0;
   else return getStartIndex(index - 1);
 }
 
@@ -53,7 +53,7 @@ export default function getWord(sourceText, index) {
   // let result = sourceText[index];
 
   return {
-    selectionStart: getStartIndex(sourceText, index - 1),
+    selectionStart: getStartIndex(sourceText, index),
     selectionEnd: getEndIndex(sourceText, index + 1)
   }
   // result = getPrevChars(sourceText, index - 1) + result + getNextChars(sourceText, index + 1)

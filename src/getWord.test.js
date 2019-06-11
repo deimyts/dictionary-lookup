@@ -33,6 +33,7 @@ describe('getWord()', () => {
     // expect(getWord('ab', 0)).toEqual(result(0, 2))
     // expect(getWord('abc', 0)).toEqual(result(0, 3))
       expect(getWord('abc ', 0)).toEqual(result(0, 3))
+      expect(getWord(' abc', 0)).toEqual(result(1, 4))
       expect(getWord(' abc ', 0)).toEqual(result(1, 4))
     // expect('abc '.substring(0, 3)).toBe('abc')
       expect(getWord('abc def', 0)).toEqual(result(0, 3))
