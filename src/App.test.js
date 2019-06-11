@@ -24,12 +24,14 @@ describe.skip('when a word is clicked', () => {
 describe('when a word has been selected', () => {
   it('passes the start & end indices to the "SelectableText" component', () => {
     const app = Enzyme.shallow(<App />);
-    const selection = {
-      start: 0,
-      end: 3
-    }
+    expect(app.find('SelectableText').prop('selectionStart')).not.toBeDefined()
+    expect(app.find('SelectableText').prop('selectionEnd')).not.toBeDefined()
 
-    app.setState({ selection })
-    expect(app.exists('SelectableText')).toBe(true);
+    app.setState({
+      selectionStart: 0,
+      selectionEnd: 1
+    })
+    expect(app.find('SelectableText').prop('selectionStart')).toBe(0)
+    expect(app.find('SelectableText').prop('selectionEnd')).toBe(1)
   });
 })
