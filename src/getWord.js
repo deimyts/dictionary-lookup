@@ -1,18 +1,20 @@
-const getNextChar = (sourceText, char, result) => {
-  if(char < sourceText.length) {
-    if(sourceText[char] === ' ') return result;
-    result += sourceText[char]
-    return getNextChar(sourceText, char + 1, result);
+const isSpace = (char) => char === ' ';
+
+const getNextChar = (sourceText, index, result) => {
+  if(index < sourceText.length) {
+    if(isSpace(sourceText[index])) return result;
+    result += sourceText[index]
+    return getNextChar(sourceText, index + 1, result);
   } else {
     return result
   }
 }
 
-const getPrevChar = (sourceText, char, result) => {
-  if(char >= 0) {
-    if(sourceText[char] === ' ') return result;
-    result = sourceText[char] + result;
-    return getPrevChar(sourceText, char - 1, result);
+const getPrevChar = (sourceText, index, result) => {
+  if(index >= 0) {
+    if(isSpace(sourceText[index])) return result;
+    result = sourceText[index] + result;
+    return getPrevChar(sourceText, index - 1, result);
   } else {
     return result
   }
