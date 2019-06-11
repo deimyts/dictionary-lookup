@@ -31,6 +31,17 @@ describe('SelectableText', () => {
       });
     });
 
+    describe('when a word in the middle is selected', () => {
+      it('should wrap the selected word in a "Highlight" component', () => {
+        const selectedText = 'FOR';
+        const sampleText = `TEXT ${selectedText} TESTING`;
+        const selectableText = renderWithSelection(sampleText, 5, 8)
+        expect(selectableText.text()).toBe(sampleText);
+        expect(selectableText.exists('Highlight')).toBe(true);
+        expect(selectableText.find('Highlight').text()).toBe(selectedText);
+      });
+    });
+
     describe('when the last word is selected', () => {
       it('should wrap the selected word in a "Highlight" component', () => {
         const selectedText = 'TESTING';
