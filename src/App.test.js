@@ -6,6 +6,9 @@ import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({ adapter: new Adapter() });
 
 import App from './App';
+import getWord from './getWord'
+
+jest.mock('./getWord');
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -30,11 +33,20 @@ describe('when a word has been selected', () => {
 
 describe('when a word is clicked', () => {
   it('adds the selection to the state', () => {
+    const mockSelection = {
+      anchorNode: {
+        textContent: 'TEST CONTENT'
+      },
+      anchorOffset: 0
+    }
+    document.getSelection = jest.fn().mockReturnValue(mockSelection);
+    getWord.mockReturnValue({ selectionStart: 0, selectionEnd: 4 })
     const app = Enzyme.shallow(<App />);
     const text = app.find('SelectableText');
     text.simulate('click')
+    expect(getWord).toHaveBeenCalled();
     expect(app.state('selectionStart')).toBe(0);
-    expect(app.state('selectionEnd')).toBe(5);
+    expect(app.state('selectionEnd')).toBe(4);
   })
 })
 
