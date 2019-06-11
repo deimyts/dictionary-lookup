@@ -20,6 +20,7 @@ describe('getWord()', () => {
   describe('when the index is out of range', () => {
     it('should return an empty string', () => {
       expect(getWord('a', 1)).toBe('')
+      expect(getWord('a', -1)).toBe('')
     })
   })
 
