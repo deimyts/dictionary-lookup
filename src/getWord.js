@@ -9,8 +9,8 @@ export default function getWord(sourceText, index) {
   const getNextChar = (sourceText, index, result) => {
     const nextChar = index + 1;
     if(nextChar < sourceText.length) {
-      result = result + sourceText[nextChar]
-      return getNextChar(sourceText, index + 1, result);
+      result += sourceText[nextChar]
+      return getNextChar(sourceText, nextChar, result);
     } else {
       return result
     }
