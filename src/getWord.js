@@ -1,5 +1,6 @@
 const getNextChar = (sourceText, nextChar, result) => {
   if(nextChar < sourceText.length) {
+    if(sourceText[nextChar] === ' ') return result;
     result += sourceText[nextChar]
     return getNextChar(sourceText, nextChar + 1, result);
   } else {

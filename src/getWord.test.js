@@ -27,6 +27,8 @@ describe('getWord()', () => {
   describe('getting the word based on index', () => {
       expect(getWord('ab', 0)).toBe('ab')
       expect(getWord('abc', 0)).toBe('abc')
+      expect(getWord('abc ', 0)).toBe('abc')
+      expect(getWord('abc def', 0)).toBe('abc')
       expect(getWord('ab', 1)).toBe('ab')
       expect(getWord('abc', 2)).toBe('abc')
       expect(getWord('a', 0)).toBe('a')
