@@ -15,13 +15,6 @@ describe('getWord()', () => {
     })
   })
 
-  describe('when the source text does not contain spaces', () => {
-    it('should return the full source text', () => {
-      expect(getWord('a', 0)).toEqual(result(0, 1))
-      expect(getWord('aa', 0)).toEqual(result(0, 2))
-    })
-  })
-
   describe('when the index is out of range', () => {
     it('should return an empty object', () => {
       expect(getWord('a', 1)).toEqual({})
@@ -29,32 +22,30 @@ describe('getWord()', () => {
     })
   })
 
-  describe('getting the word based on index', () => {
+  describe('when the source text does not contain spaces', () => {
+    it('should return the full source text', () => {
+      expect(getWord('a', 0)).toEqual(result(0, 1))
+      expect(getWord('aa', 0)).toEqual(result(0, 2))
+      expect(getWord('abc', 2)).toEqual(result(0, 3))
+    })
+  })
+
+  describe('when the source text contains spaces', () => {
+    it('should not stop when it encounters a space', () => {
       expect(getWord('abc ', 0)).toEqual(result(0, 3))
       expect(getWord(' abc', 0)).toEqual(result(1, 4))
       expect(getWord(' abc ', 0)).toEqual(result(1, 4))
       expect(getWord('abc def', 0)).toEqual(result(0, 3))
-      expect(getWord('ab', 1)).toEqual(result(0, 2))
-      expect(getWord('abc', 2)).toEqual(result(0, 3))
       expect(getWord('a bc', 2)).toEqual(result(2, 4))
       expect(getWord('def abc', 6)).toEqual(result(4, 7))
-      expect(getWord('a', 0)).toEqual(result(0, 1))
-  })
-
-  describe.skip('when the source text contains spaces', () => {
-    it('should not include the spaces', () => {
-      expect(getWord('a ', 0)).toBe('a')
-      expect(getWord(' a', 0)).toBe('a')
-      expect(getWord(' a ', 0)).toBe('a')
-      expect(getWord('a b', 0)).toBe('a')
     })
   })
 
-  describe('when the source text contains non-word characters', () => {
+  describe.skip('when the source text contains non-word characters', () => {
     it('should return the full source text', () => {
-      // expect(getWord('a,', 0)).toBe('a')
-      // expect(getWord('a1', 0)).toBe('a')
-      // expect(getWord('a:', 0)).toBe('a')
+      expect(getWord('a,', 0)).toBe(result(0, 1))
+      expect(getWord('a1', 0)).toBe(result(0, 1))
+      expect(getWord('a:', 0)).toBe(result(0, 1))
     })
   })
 })
