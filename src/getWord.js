@@ -1,3 +1,13 @@
+const getNextChar = (sourceText, index, result) => {
+  const nextChar = index + 1;
+  if(nextChar < sourceText.length) {
+    result += sourceText[nextChar]
+    return getNextChar(sourceText, nextChar, result);
+  } else {
+    return result
+  }
+}
+
 export default function getWord(sourceText, index) {
   const invalidArgs = !sourceText || typeof index !== 'number';
   if(invalidArgs) return '';
@@ -5,16 +15,6 @@ export default function getWord(sourceText, index) {
   if(indexOutOfRange) return '';
 
   let result = sourceText[index];
-
-  const getNextChar = (sourceText, index, result) => {
-    const nextChar = index + 1;
-    if(nextChar < sourceText.length) {
-      result += sourceText[nextChar]
-      return getNextChar(sourceText, nextChar, result);
-    } else {
-      return result
-    }
-  }
 
   result = getNextChar(sourceText, index, result);
   const prevChar = index - 1;
