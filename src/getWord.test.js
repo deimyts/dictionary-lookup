@@ -17,6 +17,12 @@ describe('getWord()', () => {
     })
   })
 
+  describe('when the index is out of range', () => {
+    it('should return an empty string', () => {
+      expect(getWord('a', 1)).toBe('')
+    })
+  })
+
   describe('getting the word based on index', () => {
       expect(getWord('ab', 0)).toBe('ab')
       expect(getWord('a', 0)).toBe('a')
