@@ -1,22 +1,22 @@
 const isSpace = (char) => char === ' ';
 
 const getNextChars = (sourceText, index, result = '') => {
-  if(index < sourceText.length) {
+  if(index >= sourceText.length) {
+    return result
+  } else {
     if(isSpace(sourceText[index])) return result;
     result += sourceText[index]
     return getNextChars(sourceText, index + 1, result);
-  } else {
-    return result
   }
 }
 
 const getPrevChars = (sourceText, index, result = '') => {
-  if(index >= 0) {
+  if(index < 0) { 
+    return result 
+  } else {
     if(isSpace(sourceText[index])) return result;
     result = sourceText[index] + result;
     return getPrevChars(sourceText, index - 1, result);
-  } else {
-    return result
   }
 }
 
