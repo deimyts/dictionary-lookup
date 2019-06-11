@@ -1,25 +1,27 @@
 const isSpace = (char) => char === ' ';
 
-const getNextChars = (sourceText, index, result = '') => {
+const getChars = (sourceText, index, result = '', fn) => {
   const char = sourceText[index]
   const indexOutOfRange = index >= sourceText.length || index < 0
   if(indexOutOfRange || isSpace(char)) {
     return result
   } else {
-    result += sourceText[index]
-    return getNextChars(sourceText, index + 1, result);
+    return fn();
   }
 }
 
+const getNextChars = (sourceText, index, result = '') => {
+  return getChars(sourceText, index, result, () => {
+    result += sourceText[index]
+    return getNextChars(sourceText, index + 1, result);
+  })
+}
+
 const getPrevChars = (sourceText, index, result = '') => {
-  const char = sourceText[index]
-  const indexOutOfRange = index >= sourceText.length || index < 0
-  if(indexOutOfRange || isSpace(char)) { 
-    return result 
-  } else {
+  return getChars(sourceText, index, result, () => {
     result = sourceText[index] + result;
     return getPrevChars(sourceText, index - 1, result);
-  }
+  })
 }
 
 export default function getWord(sourceText, index) {
