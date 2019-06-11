@@ -1,7 +1,7 @@
 const isSpace = (char) => char === ' ';
 
 const getNextChars = (sourceText, index, result = '') => {
-  if(index >= sourceText.length) {
+  if(index >= sourceText.length || index < 0) {
     return result
   } else {
     if(isSpace(sourceText[index])) return result;
@@ -11,7 +11,7 @@ const getNextChars = (sourceText, index, result = '') => {
 }
 
 const getPrevChars = (sourceText, index, result = '') => {
-  if(index < 0) { 
+  if(index >= sourceText.length || index < 0) { 
     return result 
   } else {
     if(isSpace(sourceText[index])) return result;
