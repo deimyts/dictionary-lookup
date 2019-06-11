@@ -1,18 +1,16 @@
-const getNextChar = (sourceText, index, result) => {
-  const nextChar = index + 1;
+const getNextChar = (sourceText, nextChar, result) => {
   if(nextChar < sourceText.length) {
     result += sourceText[nextChar]
-    return getNextChar(sourceText, nextChar, result);
+    return getNextChar(sourceText, nextChar + 1, result);
   } else {
     return result
   }
 }
 
-const getPrevChar = (sourceText, index, result) => {
-  const prevChar = index - 1;
+const getPrevChar = (sourceText, prevChar, result) => {
   if(prevChar >= 0) {
     result = sourceText[prevChar] + result;
-    return getPrevChar(sourceText, prevChar, result);
+    return getPrevChar(sourceText, prevChar - 1, result);
   } else {
     return result
   }
@@ -26,7 +24,7 @@ export default function getWord(sourceText, index) {
 
   let result = sourceText[index];
 
-  result = getNextChar(sourceText, index, result);
-  result = getPrevChar(sourceText, index, result);
+  result = getNextChar(sourceText, index + 1, result);
+  result = getPrevChar(sourceText, index - 1, result);
   return result
 }
