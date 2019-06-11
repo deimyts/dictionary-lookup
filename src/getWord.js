@@ -1,3 +1,5 @@
 export default function getWord(sourceText, index) {
-  return '';
+  if(!sourceText) return '';
+  if(typeof index !== 'number') return '';
+  return sourceText;
 }
