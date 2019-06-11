@@ -27,7 +27,7 @@ const getPrevChars = (sourceText, index, result = '') => {
 const getStartIndex = (sourceText, index) => {
   if(isSpace(sourceText[index])) return index + 1;
   if(index <= 0) return 0;
-  else return getStartIndex(index - 1);
+  else return getStartIndex(sourceText, index - 1);
 }
 
 const getEndIndex = (sourceText, index) => {

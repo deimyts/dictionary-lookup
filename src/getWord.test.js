@@ -30,17 +30,14 @@ describe('getWord()', () => {
   })
 
   describe('getting the word based on index', () => {
-    // expect(getWord('ab', 0)).toEqual(result(0, 2))
-    // expect(getWord('abc', 0)).toEqual(result(0, 3))
       expect(getWord('abc ', 0)).toEqual(result(0, 3))
       expect(getWord(' abc', 0)).toEqual(result(1, 4))
       expect(getWord(' abc ', 0)).toEqual(result(1, 4))
-    // expect('abc '.substring(0, 3)).toBe('abc')
       expect(getWord('abc def', 0)).toEqual(result(0, 3))
-    // expect('abc def'.substring(0, 3)).toBe('abc ')
       expect(getWord('ab', 1)).toEqual(result(0, 2))
       expect(getWord('abc', 2)).toEqual(result(0, 3))
-    // expect(getWord('def abc', 6)).toEqual(result(4, 6))
+      expect(getWord('a bc', 2)).toEqual(result(2, 4))
+      expect(getWord('def abc', 6)).toEqual(result(4, 7))
       expect(getWord('a', 0)).toEqual(result(0, 1))
   })
 
