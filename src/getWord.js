@@ -5,9 +5,19 @@ export default function getWord(sourceText, index) {
   if(indexOutOfRange) return '';
 
   let result = sourceText[index];
-  const nextChar = index + 1;
+
+  const getNextChar = (sourceText, index, result) => {
+    const nextChar = index + 1;
+    if(nextChar < sourceText.length) {
+      result = result + sourceText[nextChar]
+      return getNextChar(sourceText, index + 1, result);
+    } else {
+      return result
+    }
+  }
+
+  result = getNextChar(sourceText, index, result);
   const prevChar = index - 1;
-  if(nextChar < sourceText.length) result = result + sourceText[nextChar]
   if(prevChar >= 0) result = sourceText[prevChar] + result
   return result
 }
