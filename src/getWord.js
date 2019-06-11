@@ -7,5 +7,6 @@ export default function getWord(sourceText, index) {
   let result = sourceText[index];
   const nextChar = index + 1;
   if(nextChar < sourceText.length) result = result + sourceText[nextChar]
+  if(index - 1 >= 0) result = sourceText[index - 1] + result
   return result
 }
