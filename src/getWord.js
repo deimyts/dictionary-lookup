@@ -1,20 +1,24 @@
 const isSpace = (char) => char === ' ';
 
 const getNextChars = (sourceText, index, result = '') => {
-  if(index >= sourceText.length || index < 0) {
+  const char = sourceText[index]
+  const indexOutOfRange = index >= sourceText.length || index < 0
+  if(indexOutOfRange) {
     return result
   } else {
-    if(isSpace(sourceText[index])) return result;
+    if(isSpace(char)) return result;
     result += sourceText[index]
     return getNextChars(sourceText, index + 1, result);
   }
 }
 
 const getPrevChars = (sourceText, index, result = '') => {
-  if(index >= sourceText.length || index < 0) { 
+  const char = sourceText[index]
+  const indexOutOfRange = index >= sourceText.length || index < 0
+  if(indexOutOfRange) { 
     return result 
   } else {
-    if(isSpace(sourceText[index])) return result;
+    if(isSpace(char)) return result;
     result = sourceText[index] + result;
     return getPrevChars(sourceText, index - 1, result);
   }
