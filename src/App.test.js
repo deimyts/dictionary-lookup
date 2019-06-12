@@ -42,7 +42,7 @@ describe('when a word is clicked', () => {
     document.getSelection = jest.fn().mockReturnValue(mockSelection);
     getWord.mockReturnValue({ selectionStart: 0, selectionEnd: 4 })
     const app = Enzyme.shallow(<App />);
-    const text = app.find('SelectableText');
+    const text = app.find('p');
     text.simulate('click')
     expect(getWord).toHaveBeenCalled();
     expect(app.state('selectionStart')).toBe(0);
