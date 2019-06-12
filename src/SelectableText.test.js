@@ -52,6 +52,18 @@ describe('SelectableText', () => {
         expect(selectableText.find('Highlight').text()).toBe(selectedText);
       });
     });
+
+    describe('when the text contains html', () => {
+      it('should adjust for the html elements', () => {
+        const selectedText = 'FOR';
+        const sampleText = `TEXT ${selectedText} <b>TESTING</b>`;
+        const selectableText = renderWithSelection(sampleText, 5, 8)
+        expect(selectableText.text()).toBe(sampleText);
+        expect(selectableText.exists('Highlight')).toBe(true);
+        expect(selectableText.find('Highlight').text()).toBe(selectedText);
+      });
+    });
+
   });
 })
 
