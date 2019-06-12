@@ -17,7 +17,7 @@ describe('SelectableText', () => {
     });
   });
 
-  describe('when highlighting a selection', () => {
+  describe.skip('when highlighting a selection', () => {
     const renderWithSelection = (text, start, end) => Enzyme.mount(<SelectableText selectionStart={start} selectionEnd={end}>{text}</SelectableText>);
 
     describe('when the first word is selected', () => {
