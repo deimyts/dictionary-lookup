@@ -1,5 +1,6 @@
 import React from 'react';
 import getWord from './getWord'
+import getDefinition from './getDefinition'
 
 export default class SelectableText extends React.Component {
   constructor(props) {
@@ -19,11 +20,21 @@ export default class SelectableText extends React.Component {
     range.setStart(selection.anchorNode, selectionStart)
     range.setEnd(selection.anchorNode, selectionEnd)
     selection.addRange(range);
+
+    const word = text.substr(selectionStart, selectionEnd);
+    getDefinition(word).then(res => {
+      this.setState({ definition: res.body.json() })
+    });
   }
 
   render() {
     const {selectionStart, selectionEnd, text} = this.state
     const children = this.props.children;
-    return <span onClick={this.setSelection}>{text}</span>;
+    return (
+      <React.Fragment>
+        <span onClick={this.setSelection}>{text}</span>
+        <div>{this.state.definition}</div>
+      </React.Fragment>
+    );
   }
 }
