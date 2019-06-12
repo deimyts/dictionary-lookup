@@ -19,9 +19,6 @@ export default class SelectableText extends React.Component {
     range.setStart(selection.anchorNode, selectionStart)
     range.setEnd(selection.anchorNode, selectionEnd)
     selection.addRange(range);
-    console.log('selection: ', selection)
-    console.log('offset: ', offset)
-    console.log('text: ', text)
   }
 
   render() {
