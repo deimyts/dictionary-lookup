@@ -30,7 +30,7 @@ describe('getWord()', () => {
     })
   })
 
-  describe('when the source text contains spaces', () => {
+  describe('when the source text contains invalid chars', () => {
     // it('should stop when it encounters a space', () => {
       // expect(getWord(' a', 1)).toEqual(result(1, 2))
       // expect(getWord(' abc', 1)).toEqual(result(1, 4))
@@ -45,8 +45,11 @@ describe('getWord()', () => {
       it('should set both indices to 0', () => {
         expect(getWord(' ', 0)).toEqual(result(0, 0))
         expect(getWord(',', 0)).toEqual(result(0, 0))
+        expect(getWord(':', 0)).toEqual(result(0, 0))
         expect(getWord(' a', 0)).toEqual(result(0, 0))
         expect(getWord('a ', 1)).toEqual(result(0, 0))
+        expect(getWord(',a', 0)).toEqual(result(0, 0))
+        expect(getWord('a,', 1)).toEqual(result(0, 0))
       })
     })
 
