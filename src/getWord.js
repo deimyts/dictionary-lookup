@@ -47,8 +47,10 @@ export default function getWord(sourceText, index) {
   const char = sourceText[index]
   const isInvalid = !char || char.match(validChars) === null;
   // console.log('RECURSING')
-  selectionStart = getStartIndex(sourceText, index - 1),
-  selectionEnd = getEndIndex(sourceText, index)
+  if(!isInvalid) { 
+    selectionStart = getStartIndex(sourceText, index - 1),
+      selectionEnd = getEndIndex(sourceText, index)
+  }
   // selectionEnd: index === sourceText.length - 1 ? sourceText.length : getEndIndex(sourceText, index + 1)
 
   return { selectionStart, selectionEnd }
