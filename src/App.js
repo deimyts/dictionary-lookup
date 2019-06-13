@@ -16,13 +16,7 @@ class App extends React.Component {
   }
 
   setSelection(e) {
-    this.setState({ definitionPosition: {
-      left: e.pageX,
-      top: e.pageY,
-    }})
-
-    this.setState({ popoverActive: true });
-
+    this.showPopover(e.pageX, e.pageY);
     const selection = document.getSelection();
     const text = selection.anchorNode.textContent;
     const offset = selection.anchorOffset;
@@ -42,6 +36,14 @@ class App extends React.Component {
         this.setState({ word, definition: 'Definition not found.' });
         console.log('ERR: ', err)
       })
+  }
+
+  showPopover(xOffset, yOffset) {
+    this.setState({ definitionPosition: {
+      left: xOffset,
+      top: yOffset
+    }})
+    this.setState({ popoverActive: true });
   }
 
   hidePopover() {
