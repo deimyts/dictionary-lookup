@@ -18,6 +18,7 @@ class App extends React.Component {
   }
 
   setSelection(e) {
+    this.setState({ word: '', definition: '' });
     this.showPopover(e.pageX, e.pageY);
     const word = highlightWord();
     getDefinition(word)
