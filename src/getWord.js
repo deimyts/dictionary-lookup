@@ -1,4 +1,4 @@
-const validChars = /[a-zA-Z]/g
+const validChars = /[a-zA-Z-]/g
 
 const getStartIndex = (sourceText, index) => {
   if(index < 0) return 0;

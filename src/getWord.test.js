@@ -33,8 +33,13 @@ describe('getWord()', () => {
     })
   })
 
-  describe('when the source text contains invalid chars', () => {
+  describe('when the source text contains hyphens', () => {
+    it('should treat them as part of the word', () => {
+      expect(getWord('a-a', 0)).toEqual(result(0, 3))
+    })
+  })
 
+  describe('when the source text contains invalid chars', () => {
     describe('when the starting index is an invalid character', () => {
       it('should set both indices to 0', () => {
         expect(getWord(' ', 0)).toEqual(result(0, 0))
