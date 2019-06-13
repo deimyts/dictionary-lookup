@@ -27,8 +27,7 @@ export default class SelectableText extends React.Component {
     console.log('text: ', text);
     console.log('WORD: ', word);
     getDefinition('test').then(definition => {
-      console.log('got it');
-      // this.setState({ definition })
+      this.setState({ definition })
     });
   }
 
@@ -37,7 +36,6 @@ export default class SelectableText extends React.Component {
     return (
       <React.Fragment>
         <span onClick={this.setSelection}>{text}</span>
-        <span>{this.state.definition}</span>
       </React.Fragment>
     );
   }
