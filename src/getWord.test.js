@@ -64,8 +64,8 @@ describe('getWord()', () => {
 
     describe('when there are spaces after the start index', () => {
       it('should stop when it encounters a space', () => {
-        // expect(getWord('a ', 0)).toEqual(result(0, 1))
-        // expect(getWord('abc ', 0)).toEqual(result(0, 3))
+        expect(getWord('a ', 0)).toEqual(result(0, 1))
+        expect(getWord('abc ', 0)).toEqual(result(0, 3))
       })
     })
 
