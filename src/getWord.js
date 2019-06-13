@@ -13,30 +13,14 @@ const getStartIndex = (sourceText, index) => {
 const getEndIndex = (sourceText, index) => {
   const char = sourceText[index]
   // console.log(`SOURCE: "${sourceText}"`)
-  console.log(`INDEX: "${index}"`)
+  // console.log(`INDEX: "${index}"`)
   // console.log('CHAR: ', `"${char}"`, 'INDEX: ', index, 'INVALID?: ', isSpace(char))
-  // if(index > sourceText.length) return sourceText.length;
-  // if(index === sourceText.length) return 'baz';
   const isInvalid = !char || char.match(validChars) === null;
   if(isInvalid) return index;
-  else if(index >= sourceText.length - 1) {
-    console.log('LAST CHAR!')
-    return index;
+  else if(index === sourceText.length - 1) {
+    console.log(`LAST CHAR: ${char} (${index})`)
+    return sourceText.length;
   }
-  // if(isSpace(char)) return index; 
-  // if(index > sourceText.length) return `bork`;
-  // if(index > sourceText.length) return sourceText.length;
-  // else if(index === sourceText.length - 1) {
-    // if(!isSpace(char)) return 'foobar'
-    // if(isSpace(char)) return `gaw: ${index}`
-    // if(isSpace(char)) return index
-    // return `blah: ${sourceText.length - 1}`
-    // console.log('BAR')
-    // return sourceText.length
-    // return sourceText.length - 1
-  // }
-  // else if(isSpace(char)) return `argh: ${index}`
-  // else if(isSpace(char)) return index
   
   else return getEndIndex(sourceText, index + 1);
   // else return getEndIndex(sourceText, index + 1);
@@ -61,7 +45,7 @@ export default function getWord(sourceText, index) {
 
   const char = sourceText[index]
   const isInvalid = !char || char.match(validChars) === null;
-  console.log('RECURSING')
+  // console.log('RECURSING')
   selectionStart = getStartIndex(sourceText, index - 1),
   selectionEnd = getEndIndex(sourceText, index)
   // selectionEnd: index === sourceText.length - 1 ? sourceText.length : getEndIndex(sourceText, index + 1)

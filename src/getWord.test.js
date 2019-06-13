@@ -26,7 +26,9 @@ describe('getWord()', () => {
     it('should return the full source text', () => {
       expect(getWord('a', 0)).toEqual(result(0, 1))
       expect(getWord('aa', 0)).toEqual(result(0, 2))
-      // expect(getWord('abc', 2)).toEqual(result(0, 3))
+      expect(getWord('aa', 1)).toEqual(result(0, 2))
+      expect(getWord('abc', 1)).toEqual(result(0, 3))
+      expect(getWord('abc', 3)).toEqual(result(0, 3))
     })
   })
 
