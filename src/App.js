@@ -17,7 +17,7 @@ class App extends React.Component {
 
   setSelection(e) {
     this.showPopover(e.pageX, e.pageY);
-    const { selectionStart, selectionEnd, text } = this.highlightWord();
+    const { selectionStart, selectionEnd, text } = highlightWord();
     const word = text.substring(selectionStart, selectionEnd);
     getDefinition(word)
       .then(res => {
@@ -28,18 +28,6 @@ class App extends React.Component {
         this.setState({ word, definition: 'Definition not found.' });
         console.log('ERR: ', err)
       })
-  }
-
-  highlightWord() {
-    const selection = document.getSelection();
-    const text = selection.anchorNode.textContent;
-    const offset = selection.anchorOffset;
-    const { selectionStart, selectionEnd } = getWord(text, offset);
-    const range = document.createRange();
-    range.setStart(selection.anchorNode, selectionStart)
-    range.setEnd(selection.anchorNode, selectionEnd)
-    selection.addRange(range);
-    return { selectionStart, selectionEnd, text };
   }
 
   showPopover(xOffset, yOffset) {
@@ -75,6 +63,18 @@ class App extends React.Component {
       </div>
     );
   }
+}
+
+function highlightWord() {
+  const selection = document.getSelection();
+  const text = selection.anchorNode.textContent;
+  const offset = selection.anchorOffset;
+  const { selectionStart, selectionEnd } = getWord(text, offset);
+  const range = document.createRange();
+  range.setStart(selection.anchorNode, selectionStart)
+  range.setEnd(selection.anchorNode, selectionEnd)
+  selection.addRange(range);
+  return { selectionStart, selectionEnd, text };
 }
 
 export default App;
