@@ -33,47 +33,51 @@ const getEndIndex = (sourceText, index) => {
 
 export default function getWord(sourceText, index) {
   console.log('SOURCE: ', `"${sourceText}"`)
+  let selectionStart = 0;
+  let selectionEnd = 0;
   const invalidArgs = !sourceText || typeof index !== 'number';
-  if(invalidArgs) return {};
+  if(invalidArgs) {
+    return { selectionStart, selectionEnd }
+  };
   const indexOutOfRange = index < 0 || index >= sourceText.length;
 
   const char = sourceText[index];
+  const isInvalid = isSpace(char);
+  console.log(`So, "${char}" IS INVALID?: `, `"${isInvalid}"`)
   if(!char) {
-    return {
-      selectionStart: 0,
-      selectionEnd: 'foo'
-    }
+    // selectionStart = 0,
+    // selectionEnd = 'foo'
   }
 
   // console.log('1')
-  if(indexOutOfRange) {
-    return {
-      selectionStart: 0,
-      selectionEnd: 'bar'
-    }
+  else if(indexOutOfRange) {
+    //  return {
+    //    selectionStart: 0,
+    //    selectionEnd: 'bar'
+    //  }
   }
   // console.log('2')
-  const isInvalid = isSpace(char);
-  console.log(`So, "${char}" IS INVALID?: `, `"${isInvalid}"`)
-  if(isInvalid) {
+  else if(isInvalid) {
     console.log('IT WAS')
-    return {
-      selectionStart: 0,
-      // selectionEnd: 'baz'
-      selectionEnd: 0
-    }
+    // return {
+    //   selectionStart: 0,
+    //   // selectionEnd: 'baz'
+    //   selectionEnd: 0
+    // }
   }
   // console.log('3')
-  if(validChars.test(sourceText)) return {
-    selectionStart: 0,
+  else if(validChars.test(sourceText)) {
+    // selectionStart: 0,
     // selectionEnd: 'qux: 0'
-    selectionEnd: sourceText.length - 1
+    selectionEnd = sourceText.length - 1
   }
 
-  console.log('RECURSING')
-  return {
-    selectionStart: getStartIndex(sourceText, index - 1),
-    selectionEnd: getEndIndex(sourceText, index)
-    // selectionEnd: index === sourceText.length - 1 ? sourceText.length : getEndIndex(sourceText, index + 1)
+  else {
+    console.log('RECURSING')
+    selectionStart = getStartIndex(sourceText, index - 1),
+    selectionEnd = getEndIndex(sourceText, index)
+      // selectionEnd: index === sourceText.length - 1 ? sourceText.length : getEndIndex(sourceText, index + 1)
   }
+
+  return { selectionStart, selectionEnd }
 }
