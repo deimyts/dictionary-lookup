@@ -56,7 +56,7 @@ describe('getWord()', () => {
       })
     })
 
-    describe.skip('when there are spaces before the start index', () => {
+    describe('when there are spaces before the start index', () => {
       it('should stop when it encounters a space', () => {
         expect(getWord(' a', 1)).toEqual(result(1, 2))
       })
@@ -69,7 +69,7 @@ describe('getWord()', () => {
       })
     })
 
-    describe.skip('when there are spaces before and after the start index', () => {
+    describe('when there are spaces before and after the start index', () => {
       it('should stop when it encounters a space', () => {
         expect(getWord(' a ', 1)).toEqual(result(1, 2))
       })
@@ -77,7 +77,7 @@ describe('getWord()', () => {
 
   })
 
-  describe.skip('when the source text contains non-word characters', () => {
+  describe('when the source text contains non-word characters', () => {
     it('should not return the non-word characters', () => {
       expect(getWord('T,', 0)).toEqual(result(0, 1))
       expect(getWord('T1', 0)).toEqual(result(0, 1))
