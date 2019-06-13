@@ -27,8 +27,9 @@ export default class SelectableText extends React.Component {
     console.log('end: ', selectionEnd);
     console.log('text: ', text);
     console.log('WORD: ', word);
-    getDefinition(word).then(definition => {
-      this.setState({ definition })
+    getDefinition(word).then(res => {
+      const definition = res.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
+      this.setState({ word, definition })
     });
   }
 
@@ -37,6 +38,10 @@ export default class SelectableText extends React.Component {
     return (
       <React.Fragment>
         <span onClick={this.setSelection}>{text}</span>
+        <br />
+        <br />
+        <br />
+        <span>{`${this.state.word}: ` + this.state.definition}</span>
       </React.Fragment>
     );
   }
