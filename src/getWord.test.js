@@ -30,7 +30,7 @@ describe('getWord()', () => {
     })
   })
 
-  describe.only('when the source text contains spaces', () => {
+  describe('when the source text contains spaces', () => {
     it('should not stop when it encounters a space', () => {
       expect(getWord(' ', 0)).toEqual(result(0, 0))
       expect(getWord(' a', 0)).toEqual(result(0, 0))
@@ -49,9 +49,9 @@ describe('getWord()', () => {
 
   describe('when the source text contains non-word characters', () => {
     it('should not return the non-word characters', () => {
-      // expect(getWord('a ', 0)).toBe(result(0, 1))
-      // expect(getWord('a1', 0)).toBe(result(0, 1))
-      // expect(getWord('a:', 0)).toBe(result(0, 1))
+      expect(getWord('a,', 0)).toEqual(result(0, 1))
+      expect(getWord('a1', 0)).toEqual(result(0, 1))
+      expect(getWord('a:', 0)).toEqual(result(0, 1))
     })
   })
 })

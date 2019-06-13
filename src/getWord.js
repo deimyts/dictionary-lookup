@@ -1,4 +1,4 @@
-const isSpace = (char) => char === ' ';
+const isSpace = (char) => char === ' ' || char === ',';
 
 const getStartIndex = (sourceText, index) => {
   if(index < 0) return 0;
