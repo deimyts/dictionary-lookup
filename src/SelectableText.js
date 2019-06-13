@@ -2,6 +2,8 @@ import React from 'react';
 import getWord from './getWord'
 import getDefinition from './getDefinition'
 
+const Definition = (props) => (<div>{`${props.word}: ${props.definition}`}</div>)
+
 export default class SelectableText extends React.Component {
   constructor(props) {
     super(props)
@@ -39,7 +41,8 @@ export default class SelectableText extends React.Component {
         <br />
         <br />
         <br />
-        <div>{`${this.state.word}: ` + this.state.definition}</div>
+        { this.state.word ? <Definition word={this.state.word} definition={this.state.definition} /> : null }
+        
       </React.Fragment>
     );
   }
