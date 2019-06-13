@@ -5,7 +5,8 @@ const getStartIndex = (sourceText, index) => {
   if(index < 0) return 0;
   const char = sourceText[index]
   // console.log('CHAR: ', char, isSpace(char))
-  if(isSpace(char)) return index + 1;
+  const isInvalid = !char || char.match(validChars) === null;
+  if(isInvalid) return index + 1;
   else if(index === 0) return 0;
   else return getStartIndex(sourceText, index - 1);
 }
