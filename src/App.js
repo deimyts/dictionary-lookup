@@ -8,7 +8,9 @@ import Definition from './Definition'
 class App extends React.Component {
   constructor() {
     super()
-    this.state = {}
+    this.state = {
+      popoverActive: false
+    }
     this.setSelection = this.setSelection.bind(this)
     this.hidePopover = this.hidePopover.bind(this)
   }
@@ -18,6 +20,8 @@ class App extends React.Component {
       left: e.pageX,
       top: e.pageY,
     }})
+
+    this.setState({ popoverActive: true });
 
     const selection = document.getSelection();
     const text = selection.anchorNode.textContent;
@@ -41,7 +45,7 @@ class App extends React.Component {
   }
 
   hidePopover() {
-    this.setState({ word: '' });
+    this.setState({ popoverActive: false });
   }
 
   render() {
@@ -53,7 +57,7 @@ class App extends React.Component {
             A dictionary, sometimes known as a wordbook, is a collection of words in one or more specific languages, often arranged alphabetically (or by radical and stroke for ideographic languages), which may include information on definitions, usage, etymologies, pronunciations, translation, etc. or a book of words in one language with their equivalents in another, sometimes known as a lexicon. It is a lexicographical reference that shows inter-relationships among the data.
           </p>
         </SelectableText>
-        { this.state.word ? 
+        { this.state.popoverActive ? 
             <Definition 
               word={this.state.word}
               definition={this.state.definition} 
