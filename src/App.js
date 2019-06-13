@@ -7,12 +7,14 @@ import Definition from './Definition'
 
 const extractDefinition = (entryData) => entryData.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
 
+const textContent = 'A dictionary, sometimes known as a wordbook, is a collection of words in one or more specific languages, often arranged alphabetically (or by radical and stroke for ideographic languages), which may include information on definitions, usage, etymologies, pronunciations, translation, etc. or a book of words in one language with their equivalents in another, sometimes known as a lexicon. It is a lexicographical reference that shows inter-relationships among the data.'
+
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
       popoverActive: false,
-      sections: []
+      sections: [ textContent ]
     }
     this.setSelection = this.setSelection.bind(this)
     this.hidePopover = this.hidePopover.bind(this)
@@ -40,7 +42,6 @@ class App extends React.Component {
   }
 
   hidePopover() {
-    // const sections = [ this.state.sections[0] + this.state.sections[1], '', this.state.sections[2]]
     const sections = [this.state.sections.join('')]
     this.setState({ popoverActive: false, sections });
   }
@@ -49,9 +50,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <SelectableText handleClick={this.setSelection} highlightActive={this.state.popoverActive} sections={this.state.sections}>
-          <p>
-            A dictionary, sometimes known as a wordbook, is a collection of words in one or more specific languages, often arranged alphabetically (or by radical and stroke for ideographic languages), which may include information on definitions, usage, etymologies, pronunciations, translation, etc. or a book of words in one language with their equivalents in another, sometimes known as a lexicon. It is a lexicographical reference that shows inter-relationships among the data.
-          </p>
+          <p>{textContent}</p>
         </SelectableText>
         { this.state.popoverActive ? 
             <Definition 
