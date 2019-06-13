@@ -15,7 +15,6 @@ const getEndIndex = (sourceText, index) => {
   const isInvalid = !char || char.match(validChars) === null;
   if(isInvalid) return index;
   else if(index === sourceText.length - 1) {
-    console.log(`LAST CHAR: ${char} (${index})`)
     return sourceText.length;
   }
   

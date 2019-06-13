@@ -34,15 +34,6 @@ describe('getWord()', () => {
   })
 
   describe('when the source text contains invalid chars', () => {
-    // it('should stop when it encounters a space', () => {
-      // expect(getWord(' a', 1)).toEqual(result(1, 2))
-      // expect(getWord(' abc', 1)).toEqual(result(1, 4))
-      // expect(getWord(' abc', 2)).toEqual(result(1, 4))
-      // expect(getWord(' abc ', 1)).toEqual(result(1, 4))
-      // expect(getWord('abc def', 0)).toEqual(result(0, 3))
-      // expect(getWord('a bc', 2)).toEqual(result(2, 4))
-      // expect(getWord('def abc', 6)).toEqual(result(4, 7))
-    // })
 
     describe('when the starting index is an invalid character', () => {
       it('should set both indices to 0', () => {
@@ -60,6 +51,13 @@ describe('getWord()', () => {
     describe('when there are spaces before the start index', () => {
       it('should stop when it encounters a space', () => {
         expect(getWord(' a', 1)).toEqual(result(1, 2))
+        expect(getWord(' ab', 1)).toEqual(result(1, 3))
+        expect(getWord(' ab', 2)).toEqual(result(1, 3))
+        expect(getWord(' abc', 1)).toEqual(result(1, 4))
+        expect(getWord(' abc', 2)).toEqual(result(1, 4))
+        expect(getWord(' abc', 3)).toEqual(result(1, 4))
+        expect(getWord('a bc', 2)).toEqual(result(2, 4))
+        expect(getWord('def abc', 6)).toEqual(result(4, 7))
       })
     })
 
@@ -67,12 +65,16 @@ describe('getWord()', () => {
       it('should stop when it encounters a space', () => {
         expect(getWord('a ', 0)).toEqual(result(0, 1))
         expect(getWord('abc ', 0)).toEqual(result(0, 3))
+        expect(getWord('abc def', 0)).toEqual(result(0, 3))
       })
     })
 
     describe('when there are spaces before and after the start index', () => {
       it('should stop when it encounters a space', () => {
         expect(getWord(' a ', 1)).toEqual(result(1, 2))
+        expect(getWord(' abc ', 1)).toEqual(result(1, 4))
+        expect(getWord(' abc ', 2)).toEqual(result(1, 4))
+        expect(getWord(' abc ', 3)).toEqual(result(1, 4))
       })
     })
 
