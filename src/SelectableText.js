@@ -16,6 +16,7 @@ export default class SelectableText extends React.Component {
   render() {
     const text = this.props.children;
     const sections = this.props.sections;
+    console.log('CHILDREN: ', text);
     return (
       <React.Fragment>
         { this.props.highlightActive ? 
