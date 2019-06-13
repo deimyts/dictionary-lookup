@@ -1,30 +1,47 @@
-const isSpace = (char) => char === ' ';
+const validChars = /[a-zA-Z-]/g
 
 const getStartIndex = (sourceText, index) => {
-  if(isSpace(sourceText[index])) return index + 1;
-  if(index <= 0) return 0;
+  if(index < 0) return 0;
+  const char = sourceText[index]
+  const isInvalid = !char || char.match(validChars) === null;
+  if(isInvalid) return index + 1;
+  else if(index === 0) return 0;
   else return getStartIndex(sourceText, index - 1);
 }
 
 const getEndIndex = (sourceText, index) => {
-  if(index >= sourceText.length) return sourceText.length;
-  if(isSpace(sourceText[index])) return index;
+  const char = sourceText[index]
+  const isInvalid = !char || char.match(validChars) === null;
+  if(isInvalid) return index;
+  else if(index === sourceText.length - 1) {
+    return sourceText.length;
+  }
+  
   else return getEndIndex(sourceText, index + 1);
 }
 
 
 export default function getWord(sourceText, index) {
+  let selectionStart = 0;
+  let selectionEnd = 0;
+
   const invalidArgs = !sourceText || typeof index !== 'number';
-  if(invalidArgs) return {};
-  const indexOutOfRange = index + 1 > sourceText.length || index < 0;
-  if(indexOutOfRange) return {};
-  if(sourceText.indexOf(' ') === -1) return {
-    selectionStart: 0,
-    selectionEnd: sourceText.length
+  if(invalidArgs) {
+    return { selectionStart, selectionEnd }
+  };
+
+  const indexOutOfRange = index < 0 || index > sourceText.length - 1;
+
+  if(indexOutOfRange) {
+    return { selectionStart, selectionEnd }
+  };
+
+  const char = sourceText[index]
+  const isInvalid = !char || char.match(validChars) === null;
+  if(!isInvalid) { 
+    selectionStart = getStartIndex(sourceText, index - 1)
+    selectionEnd = getEndIndex(sourceText, index)
   }
 
-  return {
-    selectionStart: getStartIndex(sourceText, index),
-    selectionEnd: getEndIndex(sourceText, index + 1)
-  }
+  return { selectionStart, selectionEnd }
 }
