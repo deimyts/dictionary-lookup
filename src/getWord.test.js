@@ -31,11 +31,11 @@ describe('getWord()', () => {
   })
 
   describe('when the source text contains spaces', () => {
-    it('should stop when it encounters a space', () => {
+    it.only('should stop when it encounters a space', () => {
       expect(getWord(' ', 0)).toEqual(result(0, 0))
-      // expect(getWord(' a', 0)).toEqual(result(0, 0))
+      expect(getWord(' a', 0)).toEqual(result(0, 0))
       expect(getWord('a ', 0)).toEqual(result(0, 1))
-      // expect(getWord(' a ', 1)).toEqual(result(1, 2))
+      expect(getWord(' a ', 1)).toEqual(result(1, 2))
       // expect(getWord(' a', 1)).toEqual(result(1, 2))
       expect(getWord('abc ', 0)).toEqual(result(0, 3))
       // expect(getWord(' abc', 1)).toEqual(result(1, 4))
