@@ -5,6 +5,8 @@ import getDefinition from './getDefinition'
 import SelectableText from './SelectableText'
 import Definition from './Definition'
 
+const extractDefinition = (entryData) => entryData.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
+
 class App extends React.Component {
   constructor() {
     super()
@@ -20,7 +22,7 @@ class App extends React.Component {
     const word = highlightWord();
     getDefinition(word)
       .then(res => {
-        const definition = res.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
+        const definition = extractDefinition(res);
         this.setState({ word, definition });
       })
       .catch(err => {
