@@ -14,7 +14,7 @@ function getDefinition(word) {
       app_key: process.env.APP_ID
     }
   })
-  .then(res => console.log(res))
+  .then(res => res.data.definition)
   .catch(err => console.log(err))
 }
 
