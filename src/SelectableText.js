@@ -35,11 +35,11 @@ export default class SelectableText extends React.Component {
     const {text} = this.state
     return (
       <React.Fragment>
-        <span onClick={this.setSelection}>{text}</span>
+        <div onClick={this.setSelection}>{text}</div>
         <br />
         <br />
         <br />
-        <span>{`${this.state.word}: ` + this.state.definition}</span>
+        <div>{`${this.state.word}: ` + this.state.definition}</div>
       </React.Fragment>
     );
   }
