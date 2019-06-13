@@ -31,11 +31,11 @@ class App extends React.Component {
   }
 
   showPopover(xOffset, yOffset) {
-    this.setState({ definitionPosition: {
+    const definitionPosition = {
       left: xOffset,
       top: yOffset
-    }})
-    this.setState({ popoverActive: true });
+    }
+    this.setState({ definitionPosition, popoverActive: true })
   }
 
   hidePopover() {
