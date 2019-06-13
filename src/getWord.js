@@ -18,7 +18,7 @@ const getEndIndex = (sourceText, index) => {
   if(index > sourceText.length) return sourceText.length;
   else if(index === sourceText.length - 1) {
     // if(!isSpace(char)) return 'foobar'
-    if(isSpace(char)) return `gaw: ${index}`
+    // if(isSpace(char)) return `gaw: ${index}`
     if(isSpace(char)) return index
     return `blah: ${sourceText.length - 1}`
     // console.log('BAR')
