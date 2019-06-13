@@ -75,14 +75,6 @@ function highlightWord() {
   range.setStart(selection.anchorNode, selectionStart)
   range.setEnd(selection.anchorNode, selectionEnd)
   selection.addRange(range);
-  console.log('SELECTION: ', selection);
-  console.log('RANGE:', range);
-
-  // const fullText = range.commonAncestorContainer.parentNode.parentNode;
-
-  // console.log('node text: ', text)
-  // console.log('full text: ', fullText)
-
   const start = text.substring(0, selectionStart)
   const word = text.substring(selectionStart, selectionEnd)
   const end = text.substring(selectionEnd, text.length)
