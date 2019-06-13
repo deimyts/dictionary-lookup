@@ -54,7 +54,7 @@ export default function getWord(sourceText, index) {
   }
   // console.log('2')
   const isInvalid = isSpace(char);
-  console.log(`"${char}" IS INVALID?: `, `"${isInvalid}"`)
+  console.log(`So, "${char}" IS INVALID?: `, `"${isInvalid}"`)
   if(isInvalid) {
     console.log('IT WAS')
     return {
