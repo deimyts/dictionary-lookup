@@ -23,10 +23,6 @@ export default class SelectableText extends React.Component {
 
     window.selectedText = text;
     const word = text.substring(selectionStart, selectionEnd);
-    console.log('start: ', selectionStart);
-    console.log('end: ', selectionEnd);
-    console.log('text: ', text);
-    console.log('WORD: ', word);
     getDefinition(word)
       .then(res => {
         const definition = res.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
