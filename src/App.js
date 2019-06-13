@@ -3,8 +3,7 @@ import './App.scss';
 import getWord from './getWord'
 import getDefinition from './getDefinition'
 import SelectableText from './SelectableText'
-
-const Definition = (props) => (<div>{`${props.word}: ${props.definition}`}</div>)
+import Definition from './Definition'
 
 class App extends React.Component {
   constructor() {
