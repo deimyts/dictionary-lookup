@@ -16,7 +16,7 @@ const getEndIndex = (sourceText, index) => {
 export default function getWord(sourceText, index) {
   const invalidArgs = !sourceText || typeof index !== 'number';
   if(invalidArgs) return {};
-  const indexOutOfRange = index + 1 > sourceText.length || index < 0;
+  const indexOutOfRange = index < 0 || index >= sourceText.length;
   if(indexOutOfRange) return {};
   if(sourceText.indexOf(' ') === -1) return {
     selectionStart: 0,
