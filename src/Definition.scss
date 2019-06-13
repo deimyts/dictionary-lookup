@@ -3,6 +3,15 @@
   z-index: 1;
   padding: 1.5rem;
   background: #eee;
+  transition: all 0.2s ease-in;
+}
+
+.inactive {
+  opacity: 0;
+}
+
+.active {
+  opacity: 1;
 }
 
 .overlay {
