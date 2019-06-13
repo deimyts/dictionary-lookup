@@ -6,11 +6,24 @@ const port = 3001
 
 function getDefinition(word) {
   const baseUrl = 'https://od-api.oxforddictionaries.com/api/v2'
-  return axios.get(`${baseUrl}/entries/en-us/${word}`, {
+  return axios.get(`${baseUrl}/lemmas/en-us/${word}`, {
     headers: {
       app_id: process.env.APP_ID,
       app_key: process.env.APP_KEY
     }
+  })
+  .then(res => {
+    const root = res.data.results[0].lexicalEntries[0].inflectionOf[0].id;
+    console.log('ROOT: ', root)
+    return root;
+  })
+  .then(root => {
+    return axios.get(`${baseUrl}/entries/en-us/${root}`, {
+      headers: {
+        app_id: process.env.APP_ID,
+        app_key: process.env.APP_KEY
+      }
+    })
   })
 }
 
