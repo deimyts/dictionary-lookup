@@ -11,18 +11,22 @@ const getStartIndex = (sourceText, index) => {
 
 const getEndIndex = (sourceText, index) => {
   const char = sourceText[index]
-  // console.log('CHAR: ', `"${char}"`, 'INDEX: ', index, 'INVALID?: ', isSpace(char))
+  console.log('CHAR: ', `"${char}"`, 'INDEX: ', index, 'INVALID?: ', isSpace(char))
   // if(index > sourceText.length) return sourceText.length;
   // if(index === sourceText.length) return 'baz';
+  if(index > sourceText.length) return `bork`;
   if(index > sourceText.length) return sourceText.length;
   else if(index === sourceText.length - 1) {
     // if(!isSpace(char)) return 'foobar'
+    if(isSpace(char)) return `gaw: ${index}`
     if(isSpace(char)) return index
     return `blah: ${sourceText.length - 1}`
     // console.log('BAR')
     return sourceText.length - 1
   }
-  else if(isSpace(char)) return index
+  // else if(isSpace(char)) return `argh: ${index}`
+  // else if(isSpace(char)) return index
+  
   else return getEndIndex(sourceText, index + 1);
 }
 
@@ -41,27 +45,29 @@ export default function getWord(sourceText, index) {
     }
   }
 
-  console.log('1')
+  // console.log('1')
   if(indexOutOfRange) {
     return {
       selectionStart: 0,
       selectionEnd: 'bar'
     }
   }
-  console.log('2')
+  // console.log('2')
   const isInvalid = isSpace(char);
   console.log(`"${char}" IS INVALID?: `, `"${isInvalid}"`)
   if(isInvalid) {
     console.log('IT WAS')
     return {
       selectionStart: 0,
-      selectionEnd: 'baz'
+      // selectionEnd: 'baz'
+      selectionEnd: 0
     }
   }
-  console.log('3')
+  // console.log('3')
   if(validChars.test(sourceText)) return {
     selectionStart: 0,
-    selectionEnd: 'qux'
+    // selectionEnd: 'qux: 0'
+    selectionEnd: sourceText.length - 1
   }
 
   console.log('RECURSING')

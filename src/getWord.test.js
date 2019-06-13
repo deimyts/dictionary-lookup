@@ -41,9 +41,9 @@ describe('getWord()', () => {
       // expect(getWord('def abc', 6)).toEqual(result(4, 7))
     })
 
-    describe.only('when the starting index is an invalid character', () => {
+    describe('when the starting index is an invalid character', () => {
       it('should stop when it encounters a space', () => {
-        expect(getWord(' ', 0)).toEqual(result(0, 'baz'))
+        expect(getWord(' ', 0)).toEqual(result(0, 0))
         expect(getWord(' a', 0)).toEqual(result(0, 0))
         expect(getWord('a ', 1)).toEqual(result(0, 0))
       })
@@ -55,14 +55,14 @@ describe('getWord()', () => {
       })
     })
 
-    describe('when there are spaces after the start index', () => {
+    describe.only('when there are spaces after the start index', () => {
       it('should stop when it encounters a space', () => {
-        expect(getWord('a ', 0)).toEqual(result(0, 1))
+        expect(getWord('a ', 0)).toEqual(result(0, 'gaw: 1'))
         expect(getWord('abc ', 0)).toEqual(result(0, 3))
       })
     })
 
-    describe('when there are spaces before and after the start index', () => {
+    describe.skip('when there are spaces before and after the start index', () => {
       it('should stop when it encounters a space', () => {
         expect(getWord(' a ', 1)).toEqual(result(1, 2))
       })
