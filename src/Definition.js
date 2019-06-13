@@ -2,7 +2,7 @@ import React from 'react';
 import './Definition.scss';
 
 export default function Definition(props) {
-  return <div className='definition'>{`${props.word}: ${props.definition}`}</div>
+  return <div className='definition' style={props.style}>{`${props.word}: ${props.definition}`}</div>
 }
 
 
