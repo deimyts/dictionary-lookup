@@ -1,5 +1,4 @@
 const validChars = /[a-zA-Z]/g
-const isSpace = (char) => !validChars.test(char);
 
 const getStartIndex = (sourceText, index) => {
   if(index < 0) return 0;
@@ -40,8 +39,8 @@ export default function getWord(sourceText, index) {
   const char = sourceText[index]
   const isInvalid = !char || char.match(validChars) === null;
   if(!isInvalid) { 
-    selectionStart = getStartIndex(sourceText, index - 1),
-      selectionEnd = getEndIndex(sourceText, index)
+    selectionStart = getStartIndex(sourceText, index - 1)
+    selectionEnd = getEndIndex(sourceText, index)
   }
 
   return { selectionStart, selectionEnd }
