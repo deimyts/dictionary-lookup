@@ -15,7 +15,11 @@ const getEndIndex = (sourceText, index) => {
   console.log('CHAR: ', `"${char}"`, 'INDEX: ', index, 'INVALID?: ', isSpace(char))
   // if(index > sourceText.length) return sourceText.length;
   // if(index === sourceText.length) return 'baz';
-  if(index === sourceText.length) return index;
+  if(index === (sourceText.length - 1)) {
+    console.log('LAST CHAR!')
+    return index;
+  }
+  // if(isSpace(char)) return index; 
   // if(index > sourceText.length) return `bork`;
   // if(index > sourceText.length) return sourceText.length;
   // else if(index === sourceText.length - 1) {
@@ -36,32 +40,36 @@ const getEndIndex = (sourceText, index) => {
 
 
 export default function getWord(sourceText, index) {
-  console.log('SOURCE: ', `"${sourceText}"`)
-  let selectionStart = 0;
-  let selectionEnd = 0;
+  // console.log('SOURCE: ', `"${sourceText}"`)
   const invalidArgs = !sourceText || typeof index !== 'number';
   if(invalidArgs) {
     return { selectionStart, selectionEnd }
   };
-  const indexOutOfRange = index < 0 || index >= sourceText.length;
 
-  const char = sourceText[index];
-  const isInvalid = !char || isSpace(char);
-  console.log(`SO, "${char}" IS INVALID?: `, `"${isInvalid}"`)
+  let selectionStart = 'foo';
+  let selectionEnd = 'bar';
+  // const indexOutOfRange = index < 0 || index >= sourceText.length;
+
+  const char = sourceText[index]
+  // const char = sourceText.substring(index, index+1);
+  // const isInvalid = isSpace(char);
+  const isInvalid = !char || char.match(validChars) === null;
+  // console.log(`SO, "${char}" IS INVALID?: `, `"${isInvalid}"`)
   if(!char) {
     // selectionStart = 0,
     // selectionEnd = 'foo'
   }
 
   // console.log('1')
-  else if(indexOutOfRange) {
+  // else if(indexOutOfRange) {
     //  return {
     //    selectionStart: 0,
     //    selectionEnd: 'bar'
     //  }
-  }
+  // }
   // console.log('2')
   else if(isInvalid) {
+    // return { selectionStart, selectionEnd }
     // console.log('IT WAS')
     // return {
     //   selectionStart: 0,
