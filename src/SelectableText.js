@@ -1,18 +1,12 @@
 import React from 'react';
 
-export default class SelectableText extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      text: this.props.children
-    }
-  }
+// const Highlight = ({ text }) => <span style={{background: 'yellow'}}>{text}</span>
 
+export default class SelectableText extends React.Component {
   render() {
-    const {text} = this.state
     return (
       <React.Fragment>
-        <div onClick={this.props.handleClick}>{text}</div>
+        <div onClick={this.props.handleClick}>{this.props.children}</div>
       </React.Fragment>
     );
   }
