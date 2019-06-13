@@ -31,7 +31,7 @@ export default class SelectableText extends React.Component {
         this.setState({ word, definition });
       })
       .catch(err => {
-        this.setState({ word, definition: 'Definition not found' });
+        this.setState({ word, definition: 'Definition not found.' });
         console.log('ERR: ', err)
       })
   }
