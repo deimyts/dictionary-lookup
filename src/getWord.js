@@ -6,16 +6,20 @@ const getStartIndex = (sourceText, index) => {
   const char = sourceText[index]
   // console.log('CHAR: ', char, isSpace(char))
   if(isSpace(char)) return index + 1;
+  else if(index === 0) return 0;
   else return getStartIndex(sourceText, index - 1);
 }
 
 const getEndIndex = (sourceText, index) => {
   const char = sourceText[index]
-  console.log(`SOURCE: "${sourceText}"`)
-  console.log('CHAR: ', `"${char}"`, 'INDEX: ', index, 'INVALID?: ', isSpace(char))
+  // console.log(`SOURCE: "${sourceText}"`)
+  console.log(`INDEX: "${index}"`)
+  // console.log('CHAR: ', `"${char}"`, 'INDEX: ', index, 'INVALID?: ', isSpace(char))
   // if(index > sourceText.length) return sourceText.length;
   // if(index === sourceText.length) return 'baz';
-  if(index === (sourceText.length - 1)) {
+  const isInvalid = !char || char.match(validChars) === null;
+  if(isInvalid) return index;
+  else if(index >= sourceText.length - 1) {
     console.log('LAST CHAR!')
     return index;
   }
@@ -41,56 +45,26 @@ const getEndIndex = (sourceText, index) => {
 
 export default function getWord(sourceText, index) {
   // console.log('SOURCE: ', `"${sourceText}"`)
+  let selectionStart = 0;
+  let selectionEnd = 0;
+
   const invalidArgs = !sourceText || typeof index !== 'number';
   if(invalidArgs) {
     return { selectionStart, selectionEnd }
   };
 
-  let selectionStart = 'foo';
-  let selectionEnd = 'bar';
-  // const indexOutOfRange = index < 0 || index >= sourceText.length;
+  const indexOutOfRange = index < 0 || index > sourceText.length - 1;
+
+  if(indexOutOfRange) {
+    return { selectionStart, selectionEnd }
+  };
 
   const char = sourceText[index]
-  // const char = sourceText.substring(index, index+1);
-  // const isInvalid = isSpace(char);
   const isInvalid = !char || char.match(validChars) === null;
-  // console.log(`SO, "${char}" IS INVALID?: `, `"${isInvalid}"`)
-  if(!char) {
-    // selectionStart = 0,
-    // selectionEnd = 'foo'
-  }
-
-  // console.log('1')
-  // else if(indexOutOfRange) {
-    //  return {
-    //    selectionStart: 0,
-    //    selectionEnd: 'bar'
-    //  }
-  // }
-  // console.log('2')
-  else if(isInvalid) {
-    // return { selectionStart, selectionEnd }
-    // console.log('IT WAS')
-    // return {
-    //   selectionStart: 0,
-    //   // selectionEnd: 'baz'
-    //   selectionEnd: 0
-    // }
-  }
-  // console.log('3')
-  else if(!!validChars.test(sourceText)) {
-    // selectionStart: 0,
-    // selectionEnd: 'qux: 0'
-    // selectionEnd = sourceText.length
-    // selectionEnd = 'qux'
-  }
-
-  else {
-    console.log('RECURSING')
-    selectionStart = getStartIndex(sourceText, index - 1),
-    selectionEnd = getEndIndex(sourceText, index)
-      // selectionEnd: index === sourceText.length - 1 ? sourceText.length : getEndIndex(sourceText, index + 1)
-  }
+  console.log('RECURSING')
+  selectionStart = getStartIndex(sourceText, index - 1),
+  selectionEnd = getEndIndex(sourceText, index)
+  // selectionEnd: index === sourceText.length - 1 ? sourceText.length : getEndIndex(sourceText, index + 1)
 
   return { selectionStart, selectionEnd }
 }

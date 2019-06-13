@@ -44,9 +44,9 @@ describe('getWord()', () => {
     describe('when the starting index is an invalid character', () => {
       it('should set both indices to 0', () => {
         expect(getWord(' ', 0)).toEqual(result(0, 0))
-        // expect(getWord(',', 0)).toEqual(result(0, 0))
-        // expect(getWord(':', 0)).toEqual(result(0, 0))
-        // expect(getWord(' a', 0)).toEqual(result(0, 0))
+        expect(getWord(',', 0)).toEqual(result(0, 0))
+        expect(getWord(':', 0)).toEqual(result(0, 0))
+        expect(getWord(' a', 0)).toEqual(result(0, 0))
         // expect(getWord('a ', 1)).toEqual(result(0, 0))
         // expect(getWord(',a', 0)).toEqual(result(0, 0))
         // expect(getWord('a,', 1)).toEqual(result(0, 0))
