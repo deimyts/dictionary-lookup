@@ -15,8 +15,8 @@ class App extends React.Component {
 
   setSelection(e) {
     this.setState({ definitionPosition: {
-      x: e.pageX,
-      y: e.pageY,
+      left: e.pageX,
+      top: e.pageY,
     }})
 
     const selection = document.getSelection();
@@ -57,7 +57,7 @@ class App extends React.Component {
             <Definition 
               word={this.state.word}
               definition={this.state.definition} 
-              style={{ left: this.state.definitionPosition.x, top: this.state.definitionPosition.y }}  
+              style={this.state.definitionPosition}  
               overlayClickHandler={this.hidePopover} 
             /> 
             : null 
