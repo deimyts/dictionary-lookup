@@ -17,8 +17,7 @@ class App extends React.Component {
 
   setSelection(e) {
     this.showPopover(e.pageX, e.pageY);
-    const { selectionStart, selectionEnd, text } = highlightWord();
-    const word = text.substring(selectionStart, selectionEnd);
+    const word = highlightWord();
     getDefinition(word)
       .then(res => {
         const definition = res.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
@@ -74,7 +73,7 @@ function highlightWord() {
   range.setStart(selection.anchorNode, selectionStart)
   range.setEnd(selection.anchorNode, selectionEnd)
   selection.addRange(range);
-  return { selectionStart, selectionEnd, text };
+  return text.substring(selectionStart, selectionEnd);
 }
 
 export default App;
