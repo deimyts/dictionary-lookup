@@ -5,7 +5,6 @@ import SelectableText from './SelectableText'
 class App extends React.Component {
 
   render() {
-
     return (
       <div className="App">
         <h1>Dictionary</h1>

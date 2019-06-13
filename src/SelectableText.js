@@ -22,14 +22,17 @@ export default class SelectableText extends React.Component {
     selection.addRange(range);
 
     const word = text.substr(selectionStart, selectionEnd);
-    getDefinition(word).then(res => {
+    console.log('start: ', selectionStart);
+    console.log('end: ', selectionEnd);
+    console.log('text: ', text);
+    console.log('WORD: ', word);
+    getDefinition('test').then(res => {
       this.setState({ definition: res.body.json() })
     });
   }
 
   render() {
-    const {selectionStart, selectionEnd, text} = this.state
-    const children = this.props.children;
+    const {text} = this.state
     return (
       <React.Fragment>
         <span onClick={this.setSelection}>{text}</span>

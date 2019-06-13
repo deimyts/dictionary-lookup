@@ -1,4 +1,7 @@
+const axios = require('axios')
 export default function getDefinition(word) {
-  const baseUrl = 'https://od-api.oxforddictionaries.com/api/v2'
-  return fetch(`${baseUrl}/entries/en-us/${word}`);
+  const baseUrl = 'http://localhost:3001/api'
+  return axios.get(`${baseUrl}/definitions/`)
+    .then(res => console.log(res.data.definition))
+    .catch(err => console.log(err))
 }
