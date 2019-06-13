@@ -11,23 +11,27 @@ const getStartIndex = (sourceText, index) => {
 
 const getEndIndex = (sourceText, index) => {
   const char = sourceText[index]
+  console.log(`SOURCE: "${sourceText}"`)
   console.log('CHAR: ', `"${char}"`, 'INDEX: ', index, 'INVALID?: ', isSpace(char))
   // if(index > sourceText.length) return sourceText.length;
   // if(index === sourceText.length) return 'baz';
-  if(index > sourceText.length) return `bork`;
-  if(index > sourceText.length) return sourceText.length;
-  else if(index === sourceText.length - 1) {
+  if(index === sourceText.length) return index;
+  // if(index > sourceText.length) return `bork`;
+  // if(index > sourceText.length) return sourceText.length;
+  // else if(index === sourceText.length - 1) {
     // if(!isSpace(char)) return 'foobar'
     // if(isSpace(char)) return `gaw: ${index}`
-    if(isSpace(char)) return index
-    return `blah: ${sourceText.length - 1}`
+    // if(isSpace(char)) return index
+    // return `blah: ${sourceText.length - 1}`
     // console.log('BAR')
-    return sourceText.length - 1
-  }
+    // return sourceText.length
+    // return sourceText.length - 1
+  // }
   // else if(isSpace(char)) return `argh: ${index}`
   // else if(isSpace(char)) return index
   
   else return getEndIndex(sourceText, index + 1);
+  // else return getEndIndex(sourceText, index + 1);
 }
 
 
@@ -42,8 +46,8 @@ export default function getWord(sourceText, index) {
   const indexOutOfRange = index < 0 || index >= sourceText.length;
 
   const char = sourceText[index];
-  const isInvalid = isSpace(char);
-  console.log(`So, "${char}" IS INVALID?: `, `"${isInvalid}"`)
+  const isInvalid = !char || isSpace(char);
+  console.log(`SO, "${char}" IS INVALID?: `, `"${isInvalid}"`)
   if(!char) {
     // selectionStart = 0,
     // selectionEnd = 'foo'
@@ -58,7 +62,7 @@ export default function getWord(sourceText, index) {
   }
   // console.log('2')
   else if(isInvalid) {
-    console.log('IT WAS')
+    // console.log('IT WAS')
     // return {
     //   selectionStart: 0,
     //   // selectionEnd: 'baz'
@@ -66,10 +70,11 @@ export default function getWord(sourceText, index) {
     // }
   }
   // console.log('3')
-  else if(validChars.test(sourceText)) {
+  else if(!!validChars.test(sourceText)) {
     // selectionStart: 0,
     // selectionEnd: 'qux: 0'
-    selectionEnd = sourceText.length - 1
+    // selectionEnd = sourceText.length
+    // selectionEnd = 'qux'
   }
 
   else {
