@@ -39,7 +39,6 @@ class App extends React.Component {
     range.setStart(selection.anchorNode, selectionStart)
     range.setEnd(selection.anchorNode, selectionEnd)
     selection.addRange(range);
-    window.selectedText = text;
     return { selectionStart, selectionEnd, text };
   }
 
