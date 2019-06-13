@@ -28,9 +28,12 @@ export default class SelectableText extends React.Component {
     getDefinition(word)
       .then(res => {
         const definition = res.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
-        this.setState({ word, definition })
+        this.setState({ word, definition });
       })
-      .catch(err => console.log('ERR: ', err))
+      .catch(err => {
+        this.setState({ word, definition: 'Definition not found' });
+        console.log('ERR: ', err)
+      })
   }
 
   render() {
