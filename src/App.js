@@ -21,10 +21,8 @@ class App extends React.Component {
     this.showPopover(e.pageX, e.pageY);
     const word = highlightWord();
     getDefinition(word)
-      .then(res => {
-        const definition = extractDefinition(res);
-        this.setState({ word, definition });
-      })
+      .then(extractDefinition)
+      .then(definition => this.setState({ word, definition }))
       .catch(err => {
         this.setState({ word, definition: 'Definition not found.' });
         console.log('ERR: ', err)
