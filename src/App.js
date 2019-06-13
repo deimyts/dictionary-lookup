@@ -3,7 +3,7 @@ import './App.scss';
 import getWord from './getWord'
 import getDefinition from './getDefinition'
 import SelectableText from './SelectableText'
-import Definition from './Definition'
+import Definition, { Overlay } from './Definition'
 
 class App extends React.Component {
   constructor() {
@@ -50,6 +50,7 @@ class App extends React.Component {
           </p>
         </SelectableText>
         { this.state.word ? <Definition word={this.state.word} definition={this.state.definition} style={{ left: this.state.definitionPosition.x, top: this.state.definitionPosition.y }}/> : null }
+        { this.state.word ? <Overlay /> : null }
       </div>
     );
   }
