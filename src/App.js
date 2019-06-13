@@ -11,7 +11,8 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      popoverActive: false
+      popoverActive: false,
+      sections: []
     }
     this.setSelection = this.setSelection.bind(this)
     this.hidePopover = this.hidePopover.bind(this)
@@ -20,12 +21,12 @@ class App extends React.Component {
   setSelection(e) {
     this.setState({ word: '', definition: '' });
     this.showPopover(e.pageX, e.pageY);
-    const word = highlightWord();
+    const [ start, word, end ] = highlightWord();
     getDefinition(word)
       .then(extractDefinition)
-      .then(definition => this.setState({ word, definition }))
+      .then(definition => this.setState({ word, definition, sections: [ start, word, end ]}))
       .catch(err => {
-        this.setState({ word, definition: 'Definition not found.' });
+        this.setState({ word, definition: 'Definition not found.', sections: [ start, word, end ]});
         console.log('ERR: ', err)
       })
   }
@@ -45,11 +46,11 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <SelectableText handleClick={this.setSelection} highlightActive={this.state.popoverActive} >
+        <SelectableText handleClick={this.setSelection} highlightActive={this.state.popoverActive} sections={this.state.sections}>
           Lorem ipsum dolor sit amet.
         </SelectableText>
         <hr />
-        <SelectableText handleClick={this.setSelection} highlightActive={this.state.popoverActive} >
+        <SelectableText handleClick={this.setSelection} highlightActive={this.state.popoverActive} sections={this.state.sections}>
           <h1>Dictionary</h1>
           <p>
             A dictionary, sometimes known as a wordbook, is a collection of words in one or more specific languages, often arranged alphabetically (or by radical and stroke for ideographic languages), which may include information on definitions, usage, etymologies, pronunciations, translation, etc. or a book of words in one language with their equivalents in another, sometimes known as a lexicon. It is a lexicographical reference that shows inter-relationships among the data.
@@ -80,7 +81,11 @@ function highlightWord() {
   selection.addRange(range);
   console.log('SELECTION: ', selection);
   console.log('RANGE:', range);
-  return text.substring(selectionStart, selectionEnd);
+
+  const start = text.substring(0, selectionStart)
+  const word = text.substring(selectionStart, selectionEnd)
+  const end = text.substring(selectionEnd, text.length)
+  return [ start, word, end ];
 }
 
 export default App;

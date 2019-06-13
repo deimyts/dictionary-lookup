@@ -1,28 +1,30 @@
 import React from 'react';
 
-const Highlight = (props) => <span style={{background: 'yellow', display: 'block'}}>{props.children}</span>
+const Highlight = (props) => <span style={{background: 'yellow', display: 'inline-block'}}>{props.children}</span>
 
 const TextWithHighlight = ({ start, middle, end }) => {
   return (
     <React.Fragment>
-      <div>{start}</div>
+      <span>{start}</span>
       <Highlight>{middle}</Highlight>
-      <div>{end}</div>
+      <span>{end}</span>
     </React.Fragment>
   )
 }
 
 export default class SelectableText extends React.Component {
   render() {
-    let text = this.props.children;
+    const text = this.props.children;
+    const sections = this.props.sections;
     // console.log('TEXT: ', text)
     // if(this.props.highlightActive) {
     //   text = <span>{text.substring(0, this.props.selectionStart)}<Highlight text={text.substring(this.props.selectionStart, this.props.selectionEnd)} />{text.substring(this.props.selectionEnd, text.length)}</span>
     // }
     return (
       <React.Fragment>
-        { this.props.highlightActive ? <TextWithHighlight start='foo' middle={text} end='baz'/> : null }
-        <div onClick={this.props.handleClick}>{text}</div>
+        { this.props.highlightActive ? 
+          <TextWithHighlight start={sections[0]} middle={sections[1]} end={sections[2]}/> :
+          <div onClick={this.props.handleClick}>{text}</div> }
       </React.Fragment>
     );
   }
