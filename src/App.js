@@ -45,7 +45,11 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <SelectableText handleClick={this.setSelection}>
+        <SelectableText handleClick={this.setSelection} highlightActive={this.state.popoverActive} >
+          Lorem ipsum dolor sit amet.
+        </SelectableText>
+        <hr />
+        <SelectableText handleClick={this.setSelection} highlightActive={this.state.popoverActive} >
           <h1>Dictionary</h1>
           <p>
             A dictionary, sometimes known as a wordbook, is a collection of words in one or more specific languages, often arranged alphabetically (or by radical and stroke for ideographic languages), which may include information on definitions, usage, etymologies, pronunciations, translation, etc. or a book of words in one language with their equivalents in another, sometimes known as a lexicon. It is a lexicographical reference that shows inter-relationships among the data.
@@ -74,6 +78,8 @@ function highlightWord() {
   range.setStart(selection.anchorNode, selectionStart)
   range.setEnd(selection.anchorNode, selectionEnd)
   selection.addRange(range);
+  console.log('SELECTION: ', selection);
+  console.log('RANGE:', range);
   return text.substring(selectionStart, selectionEnd);
 }
 
