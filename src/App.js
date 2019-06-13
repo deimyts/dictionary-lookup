@@ -40,7 +40,8 @@ class App extends React.Component {
   }
 
   hidePopover() {
-    const sections = [ this.state.sections[0] + this.state.sections[1], '', this.state.sections[2]]
+    // const sections = [ this.state.sections[0] + this.state.sections[1], '', this.state.sections[2]]
+    const sections = [this.state.sections.join('')]
     this.setState({ popoverActive: false, sections });
   }
 
