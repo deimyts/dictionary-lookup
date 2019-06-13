@@ -51,6 +51,7 @@ describe('getWord()', () => {
         expect(getWord(':', 0)).toEqual(result(0, 0))
         expect(getWord(' a', 0)).toEqual(result(0, 0))
         expect(getWord('a ', 1)).toEqual(result(0, 0))
+        expect(getWord('a a', 1)).toEqual(result(0, 0))
         expect(getWord(',a', 0)).toEqual(result(0, 0))
         expect(getWord('a,', 1)).toEqual(result(0, 0))
       })
