@@ -21,7 +21,7 @@ export default class SelectableText extends React.Component {
     // }
     return (
       <React.Fragment>
-        <TextWithHighlight start='foo' middle={text} end='baz'/>
+        { this.props.highlightActive ? <TextWithHighlight start='foo' middle={text} end='baz'/> : null }
         <div onClick={this.props.handleClick}>{text}</div>
       </React.Fragment>
     );
