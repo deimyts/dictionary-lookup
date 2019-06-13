@@ -38,11 +38,7 @@ export default class SelectableText extends React.Component {
     return (
       <React.Fragment>
         <div onClick={this.setSelection}>{text}</div>
-        <br />
-        <br />
-        <br />
         { this.state.word ? <Definition word={this.state.word} definition={this.state.definition} /> : null }
-        
       </React.Fragment>
     );
   }
