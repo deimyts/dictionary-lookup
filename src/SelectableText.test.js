@@ -16,54 +16,5 @@ describe('SelectableText', () => {
       expect(clickableText.exists('Highlight')).toBe(false);
     });
   });
-
-  describe('when highlighting a selection', () => {
-    const renderWithSelection = (text, start, end) => Enzyme.mount(<SelectableText highlightActive selectionStart={start} selectionEnd={end}>{text}</SelectableText>);
-
-    describe('when the first word is selected', () => {
-      it('should wrap the selected word in a "Highlight" component', () => {
-        const selectedText = 'TEXT';
-        const sampleText = `${selectedText} FOR TESTING`;
-        const selectableText = renderWithSelection(sampleText, 0, 4)
-        expect(selectableText.text()).toBe(sampleText);
-        expect(selectableText.exists('Highlight')).toBe(true);
-        expect(selectableText.find('Highlight').text()).toBe(selectedText);
-      });
-    });
-
-    describe.skip('when a word in the middle is selected', () => {
-      it('should wrap the selected word in a "Highlight" component', () => {
-        const selectedText = 'FOR';
-        const sampleText = `TEXT ${selectedText} TESTING`;
-        const selectableText = renderWithSelection(sampleText, 5, 8)
-        expect(selectableText.text()).toBe(sampleText);
-        expect(selectableText.exists('Highlight')).toBe(true);
-        expect(selectableText.find('Highlight').text()).toBe(selectedText);
-      });
-    });
-
-    describe.skip('when the last word is selected', () => {
-      it('should wrap the selected word in a "Highlight" component', () => {
-        const selectedText = 'TESTING';
-        const sampleText = `TEXT FOR ${selectedText}`;
-        const selectableText = renderWithSelection(sampleText, 9, 16)
-        expect(selectableText.text()).toBe(sampleText);
-        expect(selectableText.exists('Highlight')).toBe(true);
-        expect(selectableText.find('Highlight').text()).toBe(selectedText);
-      });
-    });
-
-    describe.skip('when the text contains html', () => {
-      it('should adjust for the html elements', () => {
-        const selectedText = 'FOR';
-        const sampleText = `TEXT ${selectedText} <b>TESTING</b>`;
-        const selectableText = renderWithSelection(sampleText, 5, 8)
-        expect(selectableText.text()).toBe(sampleText);
-        expect(selectableText.exists('Highlight')).toBe(true);
-        expect(selectableText.find('Highlight').text()).toBe(selectedText);
-      });
-    });
-
-  });
 })
 
