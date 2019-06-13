@@ -12,7 +12,6 @@ function getDefinition(word) {
       app_key: process.env.APP_KEY
     }
   })
-  .catch(err => console.log('LOOKUP ERROR: ', err.message))
 }
 
 app.use((req, res, next) => {
@@ -21,10 +20,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/api/definitions/:word', (req, res) => {
+app.get('/api/definitions/:word', (req, res, next) => {
   return getDefinition(req.params.word)
-    .then(r =>  res.json(r.data))
-    .catch(err => console.log('SERVER ERROR: ', err))
+    .then(r => res.json(r.data))
+    .catch(err => next(err))
 })
 
 app.listen(port, () => console.log(`Server listening on port ${port}`))

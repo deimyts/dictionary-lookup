@@ -27,10 +27,12 @@ export default class SelectableText extends React.Component {
     console.log('end: ', selectionEnd);
     console.log('text: ', text);
     console.log('WORD: ', word);
-    getDefinition(word).then(res => {
-      const definition = res.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
-      this.setState({ word, definition })
-    });
+    getDefinition(word)
+      .then(res => {
+        const definition = res.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
+        this.setState({ word, definition })
+      })
+      .catch(err => console.log('ERR: ', err))
   }
 
   render() {
