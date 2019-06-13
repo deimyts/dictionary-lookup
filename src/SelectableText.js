@@ -21,12 +21,13 @@ export default class SelectableText extends React.Component {
     range.setEnd(selection.anchorNode, selectionEnd)
     selection.addRange(range);
 
-    const word = text.substr(selectionStart, selectionEnd);
+    window.selectedText = text;
+    const word = text.substring(selectionStart, selectionEnd);
     console.log('start: ', selectionStart);
     console.log('end: ', selectionEnd);
     console.log('text: ', text);
     console.log('WORD: ', word);
-    getDefinition('test').then(definition => {
+    getDefinition(word).then(definition => {
       this.setState({ definition })
     });
   }

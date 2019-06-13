@@ -21,8 +21,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/api/definitions/', (req, res) => {
-  return getDefinition('test')
+app.get('/api/definitions/:word', (req, res) => {
+  return getDefinition(req.params.word)
     .then(r =>  res.json(r.data))
     .catch(err => console.log('SERVER ERROR: ', err))
 })
