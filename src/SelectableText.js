@@ -1,18 +1,26 @@
 import React from 'react';
 
-export default class SelectableText extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      text: this.props.children
-    }
-  }
+const Highlight = (props) => <span style={{background: 'yellow', display: 'inline-block'}}>{props.children}</span>
 
+const TextWithHighlight = ({ start, middle, end }) => {
+  return (
+    <React.Fragment>
+      <span>{start}</span>
+      <Highlight>{middle}</Highlight>
+      <span>{end}</span>
+    </React.Fragment>
+  )
+}
+
+export default class SelectableText extends React.Component {
   render() {
-    const {text} = this.state
+    const text = this.props.children;
+    const sections = this.props.sections;
     return (
       <React.Fragment>
-        <div onClick={this.props.handleClick}>{text}</div>
+        { this.props.highlightActive ? 
+          <TextWithHighlight start={sections[0]} middle={sections[1]} end={sections[2]}/> :
+          <div onClick={this.props.handleClick}>{text}</div> }
       </React.Fragment>
     );
   }
