@@ -10,12 +10,11 @@ function getDefinition(word) {
     headers: {
       // 'Content-Type': 'application/json',
       // 'mode': 'same-origin',
-      app_id: process.env.APP_KEY,
-      app_key: process.env.APP_ID
+      app_id: process.env.APP_ID,
+      app_key: process.env.APP_KEY
     }
   })
-  .then(res => res.data.definition)
-  .catch(err => console.log(err))
+  .catch(err => console.log('LOOKUP ERR: ', err.message))
 }
 
 app.use((req, res, next) => {
@@ -24,5 +23,13 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/api/definitions/', (req, res) => res.json({definition: 'You rang?'}))
+// app.get('/api/definitions/', (req, res) => res.json({definition: 'You rang?'}))
+app.get('/api/definitions/', (req, res) => {
+  return getDefinition('test')
+    .then(r => {
+      console.log('data: ', r.data)
+      res.json(r.data);
+    })
+    .catch(err => console.log('EXPRESS ERR: ', err))
+})
 app.listen(port, () => console.log(`Server listening on port ${port}`))

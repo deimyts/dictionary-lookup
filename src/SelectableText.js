@@ -27,7 +27,8 @@ export default class SelectableText extends React.Component {
     console.log('text: ', text);
     console.log('WORD: ', word);
     getDefinition('test').then(definition => {
-      this.setState({ definition })
+      console.log('got it');
+      // this.setState({ definition })
     });
   }
 
