@@ -1,14 +1,16 @@
 const isSpace = (char) => char === ' ';
 
 const getStartIndex = (sourceText, index) => {
-  if(isSpace(sourceText[index])) return index + 1;
-  if(index <= 0) return 0;
+  if(index < 0) return 0;
+  const char = sourceText[index]
+  if(isSpace(char)) return index + 1;
   else return getStartIndex(sourceText, index - 1);
 }
 
 const getEndIndex = (sourceText, index) => {
-  if(index >= sourceText.length) return sourceText.length;
-  if(isSpace(sourceText[index])) return index;
+  const char = sourceText[index]
+  if(isSpace(char)) return index
+  if(index > sourceText.length) return sourceText.length;
   else return getEndIndex(sourceText, index + 1);
 }
 
@@ -24,7 +26,8 @@ export default function getWord(sourceText, index) {
   }
 
   return {
-    selectionStart: getStartIndex(sourceText, index),
-    selectionEnd: getEndIndex(sourceText, index + 1)
+    selectionStart: getStartIndex(sourceText, index - 1),
+    selectionEnd: getEndIndex(sourceText, index)
+    // selectionEnd: index === sourceText.length - 1 ? sourceText.length : getEndIndex(sourceText, index + 1)
   }
 }
