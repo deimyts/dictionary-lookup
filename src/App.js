@@ -10,6 +10,7 @@ class App extends React.Component {
     super()
     this.state = {}
     this.setSelection = this.setSelection.bind(this)
+    this.hidePopover = this.hidePopover.bind(this)
   }
 
   setSelection(e) {
@@ -17,7 +18,6 @@ class App extends React.Component {
       x: e.pageX,
       y: e.pageY,
     }})
-
 
     const selection = document.getSelection();
     const text = selection.anchorNode.textContent;
@@ -40,6 +40,10 @@ class App extends React.Component {
       })
   }
 
+  hidePopover() {
+    this.setState({ word: '' });
+  }
+
   render() {
     return (
       <div className="App">
@@ -49,8 +53,8 @@ class App extends React.Component {
             A dictionary, sometimes known as a wordbook, is a collection of words in one or more specific languages, often arranged alphabetically (or by radical and stroke for ideographic languages), which may include information on definitions, usage, etymologies, pronunciations, translation, etc. or a book of words in one language with their equivalents in another, sometimes known as a lexicon. It is a lexicographical reference that shows inter-relationships among the data.
           </p>
         </SelectableText>
-        { this.state.word ? <Definition word={this.state.word} definition={this.state.definition} style={{ left: this.state.definitionPosition.x, top: this.state.definitionPosition.y }}/> : null }
-        { this.state.word ? <Overlay /> : null }
+        { this.state.word ? <Definition word={this.state.word} definition={this.state.definition} style={{ left: this.state.definitionPosition.x, top: this.state.definitionPosition.y }} /> : null }
+        { this.state.word ? <Overlay handleClick={this.hidePopover} /> : null }
       </div>
     );
   }
