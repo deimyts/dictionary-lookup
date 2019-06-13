@@ -12,7 +12,13 @@ class App extends React.Component {
     this.setSelection = this.setSelection.bind(this)
   }
 
-  setSelection() {
+  setSelection(e) {
+    this.setState({ definitionPosition: {
+      x: e.pageX,
+      y: e.pageY,
+    }})
+
+
     const selection = document.getSelection();
     const text = selection.anchorNode.textContent;
     const offset = selection.anchorOffset;
@@ -43,7 +49,7 @@ class App extends React.Component {
             A dictionary, sometimes known as a wordbook, is a collection of words in one or more specific languages, often arranged alphabetically (or by radical and stroke for ideographic languages), which may include information on definitions, usage, etymologies, pronunciations, translation, etc. or a book of words in one language with their equivalents in another, sometimes known as a lexicon. It is a lexicographical reference that shows inter-relationships among the data.
           </p>
         </SelectableText>
-        { this.state.word ? <Definition word={this.state.word} definition={this.state.definition} style={{ left: '0', top: '0' }}/> : null }
+        { this.state.word ? <Definition word={this.state.word} definition={this.state.definition} style={{ left: this.state.definitionPosition.x, top: this.state.definitionPosition.y }}/> : null }
       </div>
     );
   }
